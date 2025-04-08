@@ -1,0 +1,9 @@
+psudeokod
+
+Dungeon escape
+kommer vara tre vall på dörrar 
+1 av de tre kommer leda till död 
+dom andra dörrarna kommer vara vanliga eller speciala
+eftersom det är duongeon escape kommer det vara många gånger du måste välja för att komma ut
+
+föst en int för liv 
