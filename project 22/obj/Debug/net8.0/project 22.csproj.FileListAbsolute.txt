@@ -12,3 +12,4 @@ C:\Users\anton.faren\Documents\Prog1\project 22\project 22\obj\Debug\net8.0\refi
 C:\Users\anton.faren\Documents\Prog1\project 22\project 22\obj\Debug\net8.0\project 22.pdb
 C:\Users\anton.faren\Documents\Prog1\project 22\project 22\obj\Debug\net8.0\project 22.genruntimeconfig.cache
 C:\Users\anton.faren\Documents\Prog1\project 22\project 22\obj\Debug\net8.0\ref\project 22.dll
+C:\Users\anton.faren\Documents\Prog1\project 22\project 22\obj\Debug\net8.0\project 22.sourcelink.json

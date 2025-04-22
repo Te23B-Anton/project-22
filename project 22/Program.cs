@@ -23,13 +23,14 @@ class doungonEscape
             Console.WriteLine($"Du har {liv} liv kvar");
             Console.WriteLine("Du står framför 3 stycken dörrar, välj 1,2 eller 3");
 
-        // 
+        // vilken man väljer är det för input till
             string input = Console.ReadLine();
-
+        //convertar det man sätter in 
             bool säker = int.TryParse(input, out int val);
-       
+            // den säger om du skrev 1, 2 eller 3
             if (säker == true)
             {
+                // 
                 if (val < 1 && val > 3)
                 {
                     Console.Clear();
