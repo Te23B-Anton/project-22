@@ -30,7 +30,7 @@ class doungonEscape
             // den säger om du skrev 1, 2 eller 3
             if (säker == true)
             {
-                // 
+                // chekar så du kan bara välja dörr 1 2 eller 3
                 if (val < 1 && val > 3)
                 {
                     Console.Clear();
@@ -39,6 +39,7 @@ class doungonEscape
                     continue;
 
                 }
+                // om man väljer fel dörr så förlorar man ett liv
                 int Dödligdör = Random.Shared.Next(1, 4);
                 if (val == Dödligdör)
                 {
@@ -47,11 +48,13 @@ class doungonEscape
                     Console.WriteLine("Du valde fel dörr!");
 
                 }
-                else
+                 else 
+                //  om man väljer rätt dörr
                 {
                     Console.Clear();
                     Console.WriteLine("Du valde rätt dörr!");
 
+                    // om man väljer rätt dörr så finns en chans att man får ett extra liv
                     if (Random.Shared.Next(5) == 0)
                     {
                         Console.WriteLine("Du hittade en special rum, du får en mera liv");
@@ -59,6 +62,7 @@ class doungonEscape
                     }
                 }
             }
+            // checkar om du skrev 1, 2, 3
             else if (säker != true)
             {
                 Console.Clear();
@@ -66,6 +70,7 @@ class doungonEscape
                 runda--;
             }
         }
+        // checkar när du har gjort så många rundor som behövs
         if (rundor == 10)
         {
             Console.Clear();
