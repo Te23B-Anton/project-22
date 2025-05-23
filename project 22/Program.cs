@@ -1,83 +1,106 @@
-﻿
-class doungonEscape
-{
+﻿using System;
 
-    // hur många gånger du kan dö
+class DungeonEscape
+{
     static int liv = 3;
-    // hur många rundor
     static int rundor = 10;
 
     static void Main()
     {
+        StartMeddelande();
+        SpelaRundor();
+        AvslutaSpel();
+    }
+
+    static void StartMeddelande()
+    {
         Console.WriteLine("Välkommen till Dungeon Escape!");
-        // kör koden för hur många rundor
+    }
+
+    static void SpelaRundor()
+    {
         for (int runda = 1; runda <= rundor; runda++)
         {
-            // om liv blir 0
             if (liv <= 0)
             {
                 Console.WriteLine("Du dog!");
+                break;
             }
 
-            Console.WriteLine($"Runda {runda} av {rundor}.");
-            Console.WriteLine($"Du har {liv} liv kvar");
-            Console.WriteLine("Du står framför 3 stycken dörrar, välj 1,2 eller 3");
+            SkrivInstruktioner(runda);
 
-        // vilken man väljer är det för input till
-            string input = Console.ReadLine();
-        //convertar det man sätter in 
-            bool säker = int.TryParse(input, out int val);
-            // den säger om du skrev 1, 2 eller 3
-            if (säker == true)
+            int val = LäsVal();
+            if (val == -1)
             {
-                // chekar så du kan bara välja dörr 1 2 eller 3
-                if (val < 1 && val > 3)
-                {
-                    Console.Clear();
-                    Console.WriteLine("inte någon av dörrarna välj ingen.");
-                    runda--;
-                    continue;
-
-                }
-                // om man väljer fel dörr så förlorar man ett liv
-                int Dödligdör = Random.Shared.Next(1, 4);
-                if (val == Dödligdör)
-                {
-                    Console.Clear();
-                    liv--;
-                    Console.WriteLine("Du valde fel dörr!");
-
-                }
-                 else 
-                //  om man väljer rätt dörr
-                {
-                    Console.Clear();
-                    Console.WriteLine("Du valde rätt dörr!");
-
-                    // om man väljer rätt dörr så finns en chans att man får ett extra liv
-                    if (Random.Shared.Next(5) == 0)
-                    {
-                        Console.WriteLine("Du hittade en special rum, du får en mera liv");
-                        liv++;
-                    }
-                }
+                runda--;
+                continue;
             }
-            // checkar om du skrev 1, 2, 3
-            else if (säker != true)
+
+            if (!ÄrGiltigtVal(val))
             {
                 Console.Clear();
-                Console.WriteLine("det är inte ett numer på en dörr");
+                Console.WriteLine("Inte någon av dörrarna, välj igen tack.");
                 runda--;
+                continue;
             }
+
+            HanteraVal(val);
         }
-        // checkar när du har gjort så många rundor som behövs
-        if (rundor == 10)
+    }
+
+    static void SkrivInstruktioner(int runda)
+    {
+        Console.WriteLine($"Runda {runda} av {rundor}.");
+        Console.WriteLine($"Du har {liv} liv kvar");
+        Console.WriteLine("Du står framför 3 stycken dörrar, välj 1,2 eller 3");
+    }
+
+    static int LäsVal()
+    {
+        string input = Console.ReadLine();
+        bool säker = int.TryParse(input, out int val);
+        if (!säker)
         {
             Console.Clear();
-            Console.WriteLine("Du escapade doungonen!");
+            Console.WriteLine("Det är inte ett nummer på en dörr");
+            return -1;
         }
+        return val;
+    }
 
+    static bool ÄrGiltigtVal(int val)
+    {
+        return val >= 1 && val <= 3;
+    }
+
+    static void HanteraVal(int val)
+    {
+        int dödligDörr = Random.Shared.Next(1, 4);
+        if (val == dödligDörr)
+        {
+            Console.Clear();
+            liv--;
+            Console.WriteLine("Du valde fel dörr!");
+        }
+        else
+        {
+            Console.Clear();
+            Console.WriteLine("Du valde rätt dörr!");
+            if (Random.Shared.Next(5) == 0)
+            {
+                Console.WriteLine("Du hittade ett specialrum, du får ett extra liv!");
+                liv++;
+            }
+        }
+    }
+
+    static void AvslutaSpel()
+    {
+        if (liv > 0)
+        {
+            Console.Clear();
+            Console.WriteLine("Du escapade dungeonen!");
+        }
         Console.ReadLine();
     }
 }
-
